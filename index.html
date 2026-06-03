@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hugo's Macro Tracker</title>
+<style>
+  :root {
+    --bg: #0d0d14;
+    --card: #16161f;
+    --card2: #1e1e2e;
+    --red: #e84040;
+    --blue: #4ea8de;
+    --yellow: #f0c030;
+    --green: #5dba6e;
+    --purple: #b06aff;
+    --text: #ffffff;
+    --muted: #6b6b80;
+    --border: #2a2a3a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  /* NAV */
+  .nav { background: var(--card); border-bottom: 1px solid var(--border); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+  .nav-logo { font-size: 18px; font-weight: 700; }
+  .nav-logo span { color: var(--red); }
+  .nav-date { font-size: 13px; color: var(--muted); }
+
+  .container { max-width: 480px; margin: 0 auto; padding: 20px 16px 40px; }
+
+  /* HEADER */
+  .header { margin-bottom: 24px; }
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .header p { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+  /* WEIGHT CARD */
+  .weight-card { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid var(--border); border-radius: 16px; padding: 18px; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; }
+  .weight-info h3 { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
+  .weight-info .current { font-size: 36px; font-weight: 800; line-height: 1; margin: 4px 0; }
+  .weight-info .goal { font-size: 13px; color: var(--muted); }
+  .weight-info .goal span { color: var(--green); font-weight: 600; }
+  .weight-progress { text-align: right; }
+  .weight-progress .lost { font-size: 13px; color: var(--green); font-weight: 600; }
+  .weight-progress .to-go { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .progress-ring { width: 70px; height: 70px; }
+
+  /* MACRO RINGS */
+  .macro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .macro-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+  .macro-card .m-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 6px; }
+  .macro-card .m-val { font-size: 24px; font-weight: 800; line-height: 1; }
+  .macro-card .m-target { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .macro-card .m-bar { height: 6px; background: var(--border); border-radius: 99px; margin-top: 10px; overflow: hidden; }
+  .macro-card .m-fill { height: 100%; border-radius: 99px; transition: width 0.4s; }
+  .c-kcal .m-val { color: var(--red); }
+  .c-kcal .m-fill { background: var(--red); }
+  .c-protein .m-val { color: var(--blue); }
+  .c-protein .m-fill { background: var(--blue); }
+  .c-carbs .m-val { color: var(--yellow); }
+  .c-carbs .m-fill { background: var(--yellow); }
+  .c-fat .m-val { color: var(--green); }
+  .c-fat .m-fill { background: var(--green); }
+
+  /* REMAINING */
+  .remaining { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 20px; }
+  .remaining h3 { font-size: 13px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 12px; }
+  .rem-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .rem-row:last-child { border-bottom: none; }
+  .rem-row .rl { font-size: 14px; color: var(--muted); }
+  .rem-row .rv { font-size: 14px; font-weight: 600; }
+  .rv.good { color: var(--green); }
+  .rv.over { color: var(--red); }
+
+  /* LOG */
+  .log { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 20px; }
+  .log-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .log-header h3 { font-size: 15px; font-weight: 600; }
+  .log-header .log-date { font-size: 12px; color: var(--muted); }
+  .log-item { padding: 14px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .log-item:last-child { border-bottom: none; }
+  .log-item .li-left .li-name { font-size: 14px; font-weight: 500; }
+  .log-item .li-left .li-amount { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .log-item .li-right { text-align: right; }
+  .log-item .li-right .li-kcal { font-size: 14px; font-weight: 600; color: var(--red); }
+  .log-item .li-right .li-macros { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .log-empty { padding: 30px 16px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  /* WEIGHT LOG */
+  .weight-log { background: var(--card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .weight-log .log-header { padding: 16px; border-bottom: 1px solid var(--border); }
+  .weight-log .w-entry { padding: 12px 16px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .weight-log .w-entry:last-child { border-bottom: none; }
+  .weight-log .w-entry .w-date { font-size: 13px; color: var(--muted); }
+  .weight-log .w-entry .w-kg { font-size: 15px; font-weight: 700; }
+  .weight-log .w-entry .w-change { font-size: 12px; }
+  .w-change.down { color: var(--green); }
+  .w-change.up { color: var(--red); }
+
+  .badge { display: inline-block; padding: 3px 8px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+  .badge-green { background: rgba(93,186,110,0.15); color: var(--green); }
+  .badge-red { background: rgba(232,64,64,0.15); color: var(--red); }
+
+  .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 12px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-logo">Hugo<span>'s</span> Tracker</div>
+  <div class="nav-date">3 June 2026 — Day 1</div>
+</div>
+
+<div class="container">
+
+  <div class="header">
+    <h1>Hi Hugo 👋</h1>
+    <p>96kg → 90–92kg &nbsp;·&nbsp; ~500 kcal deficit/day</p>
+  </div>
+
+  <!-- WEIGHT -->
+  <p class="section-title">Current Weight</p>
+  <div class="weight-card">
+    <div class="weight-info">
+      <h3>Body Weight</h3>
+      <div class="current">96 kg</div>
+      <div class="goal">Goal: <span>90–92 kg</span></div>
+    </div>
+    <div class="weight-progress">
+      <div class="lost">0 kg lost</div>
+      <div class="to-go">4–6 kg to go</div>
+    </div>
+  </div>
+
+  <!-- MACROS TODAY -->
+  <p class="section-title">Today's Macros</p>
+  <div class="macro-grid">
+    <div class="macro-card c-kcal">
+      <div class="m-label">Calories</div>
+      <div class="m-val">0</div>
+      <div class="m-target">of 2,600 kcal</div>
+      <div class="m-bar"><div class="m-fill" style="width:0%"></div></div>
+    </div>
+    <div class="macro-card c-protein">
+      <div class="m-label">Protein</div>
+      <div class="m-val">0g</div>
+      <div class="m-target">of 192g</div>
+      <div class="m-bar"><div class="m-fill" style="width:0%"></div></div>
+    </div>
+    <div class="macro-card c-carbs">
+      <div class="m-label">Carbs</div>
+      <div class="m-val">0g</div>
+      <div class="m-target">of 300g</div>
+      <div class="m-bar"><div class="m-fill" style="width:0%"></div></div>
+    </div>
+    <div class="macro-card c-fat">
+      <div class="m-label">Fat</div>
+      <div class="m-val">0g</div>
+      <div class="m-target">of 73g</div>
+      <div class="m-bar"><div class="m-fill" style="width:0%"></div></div>
+    </div>
+  </div>
+
+  <!-- REMAINING -->
+  <p class="section-title">Remaining Today</p>
+  <div class="remaining">
+    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">2,600 kcal</span></div>
+    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">192g</span></div>
+    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">300g</span></div>
+    <div class="rem-row"><span class="rl">Fat left</span><span class="rv good">73g</span></div>
+  </div>
+
+  <!-- FOOD LOG -->
+  <p class="section-title">Food Log — 3 June</p>
+  <div class="log">
+    <div class="log-header">
+      <h3>Today's Meals</h3>
+      <span class="badge badge-green">Day 1</span>
+    </div>
+    <div class="log-empty">
+      Nothing logged yet 🍽️<br>Tell me what you eat and I'll add it here!
+    </div>
+  </div>
+
+  <br>
+
+  <!-- WEIGHT LOG -->
+  <p class="section-title">Weight Log</p>
+  <div class="weight-log">
+    <div class="log-header">
+      <h3>Weigh-ins</h3>
+      <span class="badge badge-green">Started</span>
+    </div>
+    <div class="w-entry">
+      <span class="w-date">3 June 2026</span>
+      <span class="w-kg">96.0 kg</span>
+      <span class="w-change">Start 🏁</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
