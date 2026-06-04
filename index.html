@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hugo's Macro Tracker</title>
 <style>
-  :root { --bg:#0d0d14;--card:#16161f;--card2:#1e1e2e;--red:#e84040;--blue:#4ea8de;--yellow:#f0c030;--green:#5dba6e;--muted:#6b6b80;--border:#2a2a3a; }
+  :root{--bg:#0d0d14;--card:#16161f;--card2:#1e1e2e;--red:#e84040;--blue:#4ea8de;--yellow:#f0c030;--green:#5dba6e;--muted:#6b6b80;--border:#2a2a3a;}
   *{margin:0;padding:0;box-sizing:border-box;}
-  body{background:var(--bg);color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;}
+  body{background:var(--bg);color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
   .nav{background:var(--card);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
   .nav-logo{font-size:18px;font-weight:700;}.nav-logo span{color:var(--red);}
   .nav-date{font-size:13px;color:var(--muted);}
@@ -17,7 +17,7 @@
   .weight-info h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;}
   .weight-info .current{font-size:36px;font-weight:800;line-height:1;margin:4px 0;}
   .weight-info .goal{font-size:13px;color:var(--muted);}.weight-info .goal span{color:var(--green);font-weight:600;}
-  .weight-progress .lost{font-size:13px;color:var(--green);font-weight:600;text-align:right;}
+  .weight-progress .stat{font-size:13px;font-weight:600;text-align:right;}
   .weight-progress .to-go{font-size:12px;color:var(--muted);margin-top:4px;text-align:right;}
   .macro-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
   .macro-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;}
@@ -31,7 +31,6 @@
   .c-carbs .m-val{color:var(--yellow);}.c-carbs .m-fill{background:var(--yellow);}
   .c-fat .m-val{color:var(--green);}.c-fat .m-fill{background:var(--green);}
   .remaining{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:20px;}
-  .remaining h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px;}
   .rem-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
   .rem-row:last-child{border-bottom:none;}
   .rem-row .rl{font-size:14px;color:var(--muted);}
@@ -48,109 +47,91 @@
   .total-row{padding:14px 16px;background:var(--card2);display:flex;justify-content:space-between;}
   .total-row .tl{font-size:13px;font-weight:700;color:var(--muted);}
   .total-row .tr{font-size:13px;font-weight:700;color:var(--red);}
+  .log-empty{padding:30px 16px;text-align:center;color:var(--muted);font-size:14px;}
   .weight-log{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
   .w-entry{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
   .w-entry:last-child{border-bottom:none;}
   .w-date{font-size:13px;color:var(--muted);}.w-kg{font-size:15px;font-weight:700;}
+  .w-change{font-size:12px;}
   .badge{display:inline-block;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:600;}
   .badge-green{background:rgba(93,186,110,.15);color:var(--green);}
+  .badge-red{background:rgba(232,64,64,.15);color:var(--red);}
   .badge-orange{background:rgba(240,192,48,.15);color:var(--yellow);}
   .section-title{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:12px;font-weight:600;}
+  .note{background:rgba(240,192,48,.08);border:1px solid rgba(240,192,48,.2);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--yellow);}
 </style>
 </head>
 <body>
 <div class="nav">
   <div class="nav-logo">Hugo<span>'s</span> Tracker</div>
-  <div class="nav-date">3 June 2026 — Day 1</div>
+  <div class="nav-date">4 June 2026 — Day 2</div>
 </div>
 <div class="container">
   <div class="header"><h1>Hi Hugo 👋</h1><p>96kg → 90–92kg &nbsp;·&nbsp; ~500 kcal deficit/day</p></div>
+
+  <div class="note">⚠️ Today's weight is up 1.4kg from start — don't worry, this is almost certainly water retention and food weight from yesterday, not actual fat gain. Stay on track!</div>
 
   <p class="section-title">Current Weight</p>
   <div class="weight-card">
     <div class="weight-info">
       <h3>Body Weight</h3>
-      <div class="current">96 kg</div>
+      <div class="current">97.4 kg</div>
       <div class="goal">Goal: <span>90–92 kg</span></div>
     </div>
     <div class="weight-progress">
-      <div class="lost">0 kg lost</div>
-      <div class="to-go">4–6 kg to go</div>
+      <div class="stat" style="color:#e84040;">+1.4 kg</div>
+      <div class="to-go">5.4–7.4 kg to go</div>
     </div>
   </div>
 
   <p class="section-title">Today's Macros</p>
   <div class="macro-grid">
-    <div class="macro-card c-kcal">
-      <div class="m-label">Calories</div>
-      <div class="m-val">1,031</div>
-      <div class="m-target">of 2,600 kcal</div>
-      <div class="m-bar"><div class="m-fill" style="width:39%"></div></div>
-    </div>
-    <div class="macro-card c-protein">
-      <div class="m-label">Protein</div>
-      <div class="m-val">44g</div>
-      <div class="m-target">of 192g</div>
-      <div class="m-bar"><div class="m-fill" style="width:22%"></div></div>
-    </div>
-    <div class="macro-card c-carbs">
-      <div class="m-label">Carbs</div>
-      <div class="m-val">115g</div>
-      <div class="m-target">of 300g</div>
-      <div class="m-bar"><div class="m-fill" style="width:38%"></div></div>
-    </div>
-    <div class="macro-card c-fat">
-      <div class="m-label">Fat</div>
-      <div class="m-val">40g</div>
-      <div class="m-target">of 73g</div>
-      <div class="m-bar"><div class="m-fill" style="width:54%"></div></div>
-    </div>
+    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">0</div><div class="m-target">of 2,600 kcal</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">0g</div><div class="m-target">of 192g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">0g</div><div class="m-target">of 300g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">0g</div><div class="m-target">of 73g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
   </div>
 
   <p class="section-title">Remaining Today</p>
   <div class="remaining">
-    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">1,569 kcal</span></div>
-    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">148g</span></div>
-    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">185g</span></div>
-    <div class="rem-row"><span class="rl">Fat left</span><span class="rv good">33g</span></div>
+    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">2,600 kcal</span></div>
+    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">192g</span></div>
+    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">300g</span></div>
+    <div class="rem-row"><span class="rl">Fat left</span><span class="rv good">73g</span></div>
   </div>
 
-  <p class="section-title">Food Log — 3 June</p>
+  <p class="section-title">Food Log — 4 June</p>
   <div class="log">
-    <div class="log-header"><h3>Today's Meals</h3><span class="badge badge-orange">1 meal logged</span></div>
+    <div class="log-header"><h3>Today's Meals</h3><span class="badge badge-orange">Day 2</span></div>
+    <div class="log-empty">Nothing logged yet — tell me what you eat! 🍽️</div>
+  </div>
+
+  <p class="section-title">Previous Days</p>
+  <div class="log">
+    <div class="log-header"><h3>3 June — Day 1</h3><span class="badge badge-green">Logged</span></div>
     <div class="log-item">
-      <div>
-        <div class="li-name">Minced Beef</div>
-        <div class="li-amount">200g</div>
-      </div>
-      <div>
-        <div class="li-kcal">508 kcal</div>
-        <div class="li-macros">P: 34g · C: 0g · F: 40g</div>
-      </div>
+      <div><div class="li-name">Minced Beef</div><div class="li-amount">200g</div></div>
+      <div><div class="li-kcal">508 kcal</div><div class="li-macros">P: 34g · C: 0g · F: 40g</div></div>
     </div>
     <div class="log-item">
-      <div>
-        <div class="li-name">White Rice (dry)</div>
-        <div class="li-amount">150g</div>
-      </div>
-      <div>
-        <div class="li-kcal">523 kcal</div>
-        <div class="li-macros">P: 10g · C: 115g · F: 0g</div>
-      </div>
+      <div><div class="li-name">White Rice (dry)</div><div class="li-amount">150g</div></div>
+      <div><div class="li-kcal">523 kcal</div><div class="li-macros">P: 10g · C: 115g · F: 0g</div></div>
     </div>
-    <div class="total-row">
-      <span class="tl">TOTAL SO FAR</span>
-      <span class="tr">1,031 kcal · P:44g · C:115g · F:40g</span>
-    </div>
+    <div class="total-row"><span class="tl">DAY 1 TOTAL</span><span class="tr">1,031 kcal · P:44g · C:115g · F:40g</span></div>
   </div>
 
   <p class="section-title">Weight Log</p>
   <div class="weight-log">
-    <div class="log-header"><h3>Weigh-ins</h3><span class="badge badge-green">Day 1</span></div>
+    <div class="log-header"><h3>Weigh-ins</h3></div>
     <div class="w-entry">
       <span class="w-date">3 June 2026</span>
       <span class="w-kg">96.0 kg</span>
-      <span style="font-size:12px;color:var(--muted)">Start 🏁</span>
+      <span class="w-change" style="color:var(--muted)">Start 🏁</span>
+    </div>
+    <div class="w-entry">
+      <span class="w-date">4 June 2026</span>
+      <span class="w-kg">97.4 kg</span>
+      <span class="w-change" style="color:#e84040;">+1.4 kg ⚠️</span>
     </div>
   </div>
 </div>
