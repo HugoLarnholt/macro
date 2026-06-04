@@ -59,6 +59,7 @@
   .badge-orange{background:rgba(240,192,48,.15);color:var(--yellow);}
   .section-title{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:12px;font-weight:600;}
   .note{background:rgba(240,192,48,.08);border:1px solid rgba(240,192,48,.2);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--yellow);}
+  .note-red{background:rgba(232,64,64,.08);border:1px solid rgba(232,64,64,.2);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--red);}
 </style>
 </head>
 <body>
@@ -69,7 +70,7 @@
 <div class="container">
   <div class="header"><h1>Hi Hugo 👋</h1><p>96kg → 90–92kg &nbsp;·&nbsp; ~500 kcal deficit/day</p></div>
 
-  <div class="note">⚠️ Today's weight is up 1.4kg from start — don't worry, this is almost certainly water retention and food weight from yesterday, not actual fat gain. Stay on track!</div>
+  <div class="note-red">⚠️ Fat is nearly maxed out (61g / 73g) from just this meal — go lean for the rest of today. Chicken breast, rice, veggies are perfect.</div>
 
   <p class="section-title">Current Weight</p>
   <div class="weight-card">
@@ -86,24 +87,32 @@
 
   <p class="section-title">Today's Macros</p>
   <div class="macro-grid">
-    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">0</div><div class="m-target">of 2,600 kcal</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
-    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">0g</div><div class="m-target">of 192g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
-    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">0g</div><div class="m-target">of 300g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
-    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">0g</div><div class="m-target">of 73g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">1,115</div><div class="m-target">of 2,600 kcal</div><div class="m-bar"><div class="m-fill" style="width:42.9%"></div></div></div>
+    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">58g</div><div class="m-target">of 192g</div><div class="m-bar"><div class="m-fill" style="width:30.2%"></div></div></div>
+    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">80g</div><div class="m-target">of 300g</div><div class="m-bar"><div class="m-fill" style="width:26.7%"></div></div></div>
+    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">61g</div><div class="m-target">of 73g</div><div class="m-bar"><div class="m-fill" style="width:83.6%"></div></div></div>
   </div>
 
   <p class="section-title">Remaining Today</p>
   <div class="remaining">
-    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">2,600 kcal</span></div>
-    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">192g</span></div>
-    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">300g</span></div>
-    <div class="rem-row"><span class="rl">Fat left</span><span class="rv good">73g</span></div>
+    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">1,485 kcal</span></div>
+    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">134g</span></div>
+    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">220g</span></div>
+    <div class="rem-row"><span class="rl">Fat left</span><span class="rv" style="color:var(--yellow);">12g ⚠️</span></div>
   </div>
 
   <p class="section-title">Food Log — 4 June</p>
   <div class="log">
     <div class="log-header"><h3>Today's Meals</h3><span class="badge badge-orange">Day 2</span></div>
-    <div class="log-empty">Nothing logged yet — tell me what you eat! 🍽️</div>
+    <div class="log-item">
+      <div><div class="li-name">Minced Beef</div><div class="li-amount">300g</div></div>
+      <div><div class="li-kcal">750 kcal</div><div class="li-macros">P: 51g · C: 0g · F: 60g</div></div>
+    </div>
+    <div class="log-item">
+      <div><div class="li-name">White Rice (dry)</div><div class="li-amount">100g</div></div>
+      <div><div class="li-kcal">365 kcal</div><div class="li-macros">P: 7g · C: 80g · F: 1g</div></div>
+    </div>
+    <div class="total-row"><span class="tl">SO FAR TODAY</span><span class="tr">1,115 kcal · P:58g · C:80g · F:61g</span></div>
   </div>
 
   <p class="section-title">Previous Days</p>
@@ -130,7 +139,7 @@
       <div><div class="li-kcal">72 kcal</div><div class="li-macros">P: 0g · C: 0g · F: 8g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">Salami</div><div class="li-amount">8 slices (80g)</div></div>
+      <div><div class="li-name">Chorizo</div><div class="li-amount">8 slices (80g)</div></div>
       <div><div class="li-kcal">304 kcal</div><div class="li-macros">P: 18g · C: 2g · F: 26g</div></div>
     </div>
     <div class="log-item">
