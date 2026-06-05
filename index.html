@@ -47,7 +47,6 @@
   .total-row{padding:14px 16px;background:var(--card2);display:flex;justify-content:space-between;}
   .total-row .tl{font-size:13px;font-weight:700;color:var(--muted);}
   .total-row .tr{font-size:13px;font-weight:700;color:var(--red);}
-  .log-empty{padding:30px 16px;text-align:center;color:var(--muted);font-size:14px;}
   .weight-log{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
   .w-entry{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
   .w-entry:last-child{border-bottom:none;}
@@ -59,18 +58,15 @@
   .badge-orange{background:rgba(240,192,48,.15);color:var(--yellow);}
   .section-title{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:12px;font-weight:600;}
   .note{background:rgba(240,192,48,.08);border:1px solid rgba(240,192,48,.2);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--yellow);}
-  .note-red{background:rgba(232,64,64,.08);border:1px solid rgba(232,64,64,.2);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--red);}
 </style>
 </head>
 <body>
 <div class="nav">
   <div class="nav-logo">Hugo<span>'s</span> Tracker</div>
-  <div class="nav-date">4 June 2026 — Day 2</div>
+  <div class="nav-date">5 June 2026 — Day 3</div>
 </div>
 <div class="container">
   <div class="header"><h1>Hi Hugo 👋</h1><p>96kg → 88kg &nbsp;·&nbsp; ~500 kcal deficit/day | preserve muscle</p></div>
-
-  <div class="note">🏆 Protein goal smashed — 214g hit! Great day Hugo.</div>
 
   <p class="section-title">Current Weight</p>
   <div class="weight-card">
@@ -87,63 +83,64 @@
 
   <p class="section-title">Today's Macros</p>
   <div class="macro-grid">
-    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">2,263</div><div class="m-target">of 2,645 kcal</div><div class="m-bar"><div class="m-fill" style="width:85.6%"></div></div></div>
-    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">214g</div><div class="m-target">of 214g</div><div class="m-bar"><div class="m-fill" style="width:100%"></div></div></div>
-    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">211g</div><div class="m-target">of 272g</div><div class="m-bar"><div class="m-fill" style="width:77.6%"></div></div></div>
-    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">62g</div><div class="m-target">of 78g</div><div class="m-bar"><div class="m-fill" style="width:79.5%"></div></div></div>
+    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">218</div><div class="m-target">of 2,645 kcal</div><div class="m-bar"><div class="m-fill" style="width:8.2%"></div></div></div>
+    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">26g</div><div class="m-target">of 214g</div><div class="m-bar"><div class="m-fill" style="width:12.1%"></div></div></div>
+    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">29g</div><div class="m-target">of 272g</div><div class="m-bar"><div class="m-fill" style="width:10.7%"></div></div></div>
+    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">0g</div><div class="m-target">of 78g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
   </div>
 
   <p class="section-title">Remaining Today</p>
   <div class="remaining">
-    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">1508 kcal</span></div>
-    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good" style="color:var(--green);">✅ Done!</span></div>
-    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">61g</span></div>
-    <div class="rem-row"><span class="rl">Fat left</span><span class="rv good">16g</span></div>
+    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">2,427 kcal</span></div>
+    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">188g</span></div>
+    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">243g</span></div>
+    <div class="rem-row"><span class="rl">Fat left</span><span class="rv good">78g</span></div>
   </div>
 
-  <p class="section-title">Food Log — 4 June</p>
+  <p class="section-title">Food Log — 5 June</p>
   <div class="log">
-    <div class="log-header"><h3>Today's Meals</h3><span class="badge badge-orange">Day 2</span></div>
+    <div class="log-header"><h3>Today's Meals</h3><span class="badge badge-orange">Day 3</span></div>
     <div class="log-item">
-      <div><div class="li-name">Minced Beef</div><div class="li-amount">300g</div></div>
-      <div><div class="li-kcal">543 kcal</div><div class="li-macros">P: 51g · C: 0g · F: 37g (drained)</div></div>
-    </div>
-    <div class="log-item">
-      <div><div class="li-name">White Rice (dry)</div><div class="li-amount">100g</div></div>
-      <div><div class="li-kcal">365 kcal</div><div class="li-macros">P: 7g · C: 80g · F: 1g</div></div>
+      <div><div class="li-name">AH Clear Whey Protein</div><div class="li-amount">30g (lemon-lime)</div></div>
+      <div><div class="li-kcal">108 kcal</div><div class="li-macros">P: 26g · C: 2g · F: 0g</div></div>
     </div>
     <div class="log-item">
       <div><div class="li-name">Red Bull</div><div class="li-amount">1 can (250ml)</div></div>
       <div><div class="li-kcal">110 kcal</div><div class="li-macros">P: 0g · C: 27g · F: 0g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">AH Clear Whey Protein</div><div class="li-amount">33g (lemon-lime)</div></div>
-      <div><div class="li-kcal">119 kcal</div><div class="li-macros">P: 29g · C: 3g · F: 0g</div></div>
+      <div><div class="li-name">Creatine Monohydrate</div><div class="li-amount">10g</div></div>
+      <div><div class="li-kcal">0 kcal</div><div class="li-macros">P: 0g · C: 0g · F: 0g</div></div>
     </div>
-    <div class="log-item">
-      <div><div class="li-name">AH Clear Whey Protein</div><div class="li-amount">33g (lemon-lime)</div></div>
-      <div><div class="li-kcal">119 kcal</div><div class="li-macros">P: 29g · C: 3g · F: 0g</div></div>
-    </div>
-    <div class="log-item">
-      <div><div class="li-name">AH Clear Whey Protein</div><div class="li-amount">33g (lemon-lime)</div></div>
-      <div><div class="li-kcal">119 kcal</div><div class="li-macros">P: 29g · C: 3g · F: 0g</div></div>
-    </div>
-    <div class="log-item">
-      <div><div class="li-name">Minced Beef (drained)</div><div class="li-amount">300g</div></div>
-      <div><div class="li-kcal">408 kcal</div><div class="li-macros">P: 51g · C: 0g · F: 22g (drained)</div></div>
-    </div>
-    <div class="log-item">
-      <div><div class="li-name">Pasta (dry)</div><div class="li-amount">120g</div></div>
-      <div><div class="li-kcal">426 kcal</div><div class="li-macros">P: 16g · C: 84g · F: 2g</div></div>
-    </div>
-    <div class="log-item">
-      <div><div class="li-name">Tomato + Bell Pepper</div><div class="li-amount">150g + 100g</div></div>
-      <div><div class="li-kcal">54 kcal</div><div class="li-macros">P: 2g · C: 11g · F: 0g</div></div>
-    </div>
-    <div class="total-row"><span class="tl">TODAY'S TOTAL</span><span class="tr">2,263 kcal · P:214g · C:211g · F:62g</span></div>
+    <div class="total-row"><span class="tl">SO FAR TODAY</span><span class="tr">218 kcal · P:26g · C:29g · F:0g</span></div>
   </div>
 
   <p class="section-title">Previous Days</p>
+  <div class="log">
+    <div class="log-header"><h3>4 June — Day 2</h3><span class="badge badge-green">✅ 214g protein</span></div>
+    <div class="log-item">
+      <div><div class="li-name">Minced Beef (drained)</div><div class="li-amount">300g</div></div>
+      <div><div class="li-kcal">408 kcal</div><div class="li-macros">P: 37g · C: 0g · F: 22g</div></div>
+    </div>
+    <div class="log-item">
+      <div><div class="li-name">White Rice (dry)</div><div class="li-amount">100g</div></div>
+      <div><div class="li-kcal">365 kcal</div><div class="li-macros">P: 7g · C: 80g · F: 1g</div></div>
+    </div>
+    <div class="log-item">
+      <div><div class="li-name">Red Bull</div><div class="li-amount">1 can</div></div>
+      <div><div class="li-kcal">110 kcal</div><div class="li-macros">P: 0g · C: 27g · F: 0g</div></div>
+    </div>
+    <div class="log-item">
+      <div><div class="li-name">AH Clear Whey Protein x3</div><div class="li-amount">3 × 33g</div></div>
+      <div><div class="li-kcal">357 kcal</div><div class="li-macros">P: 87g · C: 9g · F: 0g</div></div>
+    </div>
+    <div class="log-item">
+      <div><div class="li-name">Minced Beef Bolognese (drained)</div><div class="li-amount">300g mince + 120g pasta + veg</div></div>
+      <div><div class="li-kcal">888 kcal</div><div class="li-macros">P: 69g · C: 95g · F: 24g</div></div>
+    </div>
+    <div class="total-row"><span class="tl">DAY 2 TOTAL</span><span class="tr">2,263 kcal · P:214g · C:211g · F:62g</span></div>
+  </div>
+
   <div class="log">
     <div class="log-header"><h3>3 June — Day 1</h3><span class="badge badge-green">Logged</span></div>
     <div class="log-item">
@@ -155,26 +152,14 @@
       <div><div class="li-kcal">523 kcal</div><div class="li-macros">P: 10g · C: 115g · F: 0g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">Bread (white)</div><div class="li-amount">7 slices (~210g)</div></div>
-      <div><div class="li-kcal">556 kcal</div><div class="li-macros">P: 19g · C: 105g · F: 6g</div></div>
+      <div><div class="li-name">Bread + Mayo + Butter</div><div class="li-amount">7 slices + 2 tbsp + 10g</div></div>
+      <div><div class="li-kcal">832 kcal</div><div class="li-macros">P: 19g · C: 106g · F: 36g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">Mayonnaise</div><div class="li-amount">2 tbsp (30g)</div></div>
-      <div><div class="li-kcal">204 kcal</div><div class="li-macros">P: 0g · C: 1g · F: 22g</div></div>
+      <div><div class="li-name">Chorizo + Ham</div><div class="li-amount">80g + 75g</div></div>
+      <div><div class="li-kcal">413 kcal</div><div class="li-macros">P: 32g · C: 4g · F: 31g</div></div>
     </div>
-    <div class="log-item">
-      <div><div class="li-name">Butter</div><div class="li-amount">~10g</div></div>
-      <div><div class="li-kcal">72 kcal</div><div class="li-macros">P: 0g · C: 0g · F: 8g</div></div>
-    </div>
-    <div class="log-item">
-      <div><div class="li-name">Chorizo</div><div class="li-amount">8 slices (80g)</div></div>
-      <div><div class="li-kcal">304 kcal</div><div class="li-macros">P: 18g · C: 2g · F: 26g</div></div>
-    </div>
-    <div class="log-item">
-      <div><div class="li-name">Ham</div><div class="li-amount">5 slices (75g)</div></div>
-      <div><div class="li-kcal">109 kcal</div><div class="li-macros">P: 14g · C: 2g · F: 5g</div></div>
-    </div>
-    <div class="total-row"><span class="tl">DAY 1 TOTAL</span><span class="tr">2,276 kcal · P:94g · C:224g · F:108g</span></div>
+    <div class="total-row"><span class="tl">DAY 1 TOTAL</span><span class="tr">2,276 kcal · P:95g · C:225g · F:107g</span></div>
   </div>
 
   <p class="section-title">Weight Log</p>
