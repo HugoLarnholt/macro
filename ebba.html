@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebba's Macro Tracker</title>
+<style>
+  :root{--bg:#0d0d14;--card:#16161f;--card2:#1e1e2e;--red:#e84040;--blue:#4ea8de;--yellow:#f0c030;--green:#5dba6e;--purple:#a78bfa;--muted:#6b6b80;--border:#2a2a3a;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;}
+  .nav{background:var(--card);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
+  .nav-logo{font-size:18px;font-weight:700;}.nav-logo span{color:var(--purple);}
+  .nav-date{font-size:13px;color:var(--muted);}
+  .container{max-width:480px;margin:0 auto;padding:20px 16px 40px;}
+  .header{margin-bottom:24px;}.header h1{font-size:22px;font-weight:700;}.header p{color:var(--muted);font-size:14px;margin-top:4px;}
+  .fodmap-banner{background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--purple);display:flex;align-items:center;gap:8px;}
+  .weight-card{background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;}
+  .weight-info h3{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;}
+  .weight-info .current{font-size:36px;font-weight:800;line-height:1;margin:4px 0;}
+  .weight-info .goal{font-size:13px;color:var(--muted);}.weight-info .goal span{color:var(--green);font-weight:600;}
+  .weight-progress .stat{font-size:13px;font-weight:600;text-align:right;}
+  .weight-progress .to-go{font-size:12px;color:var(--muted);margin-top:4px;text-align:right;}
+  .macro-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;}
+  .macro-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;}
+  .macro-card .m-label{font-size:11px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:6px;}
+  .macro-card .m-val{font-size:24px;font-weight:800;line-height:1;}
+  .macro-card .m-target{font-size:12px;color:var(--muted);margin-top:2px;}
+  .macro-card .m-bar{height:6px;background:var(--border);border-radius:99px;margin-top:10px;overflow:hidden;}
+  .macro-card .m-fill{height:100%;border-radius:99px;}
+  .c-kcal .m-val{color:var(--red);}.c-kcal .m-fill{background:var(--red);}
+  .c-protein .m-val{color:var(--blue);}.c-protein .m-fill{background:var(--blue);}
+  .c-carbs .m-val{color:var(--yellow);}.c-carbs .m-fill{background:var(--yellow);}
+  .c-fat .m-val{color:var(--green);}.c-fat .m-fill{background:var(--green);}
+  .remaining{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:20px;}
+  .rem-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+  .rem-row:last-child{border-bottom:none;}
+  .rem-row .rl{font-size:14px;color:var(--muted);}
+  .rem-row .rv{font-size:14px;font-weight:600;}
+  .rv.good{color:var(--green);}.rv.over{color:var(--red);}
+  .log{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px;}
+  .log-header{padding:16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .log-header h3{font-size:15px;font-weight:600;}
+  .log-item{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .log-item:last-child{border-bottom:none;}
+  .li-name{font-size:14px;font-weight:500;}.li-amount{font-size:12px;color:var(--muted);margin-top:2px;}
+  .li-kcal{font-size:14px;font-weight:600;color:var(--red);text-align:right;}
+  .li-macros{font-size:11px;color:var(--muted);margin-top:2px;text-align:right;}
+  .fodmap-tag{display:inline-block;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(167,139,250,.15);color:var(--purple);margin-left:6px;}
+  .ldl-tag{display:inline-block;padding:2px 6px;border-radius:6px;font-size:10px;font-weight:700;background:rgba(93,186,110,.15);color:var(--green);margin-left:6px;}
+  .total-row{padding:14px 16px;background:var(--card2);display:flex;justify-content:space-between;}
+  .total-row .tl{font-size:13px;font-weight:700;color:var(--muted);}
+  .total-row .tr{font-size:13px;font-weight:700;color:var(--red);}
+  .weight-log{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
+  .w-entry{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+  .w-entry:last-child{border-bottom:none;}
+  .w-date{font-size:13px;color:var(--muted);}.w-kg{font-size:15px;font-weight:700;}
+  .w-change{font-size:12px;}
+  .badge{display:inline-block;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:600;}
+  .badge-green{background:rgba(93,186,110,.15);color:var(--green);}
+  .badge-purple{background:rgba(167,139,250,.15);color:var(--purple);}
+  .section-title{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:12px;font-weight:600;}
+  .empty-state{padding:32px 16px;text-align:center;color:var(--muted);font-size:14px;}
+</style>
+</head>
+<body>
+<div class="nav">
+  <div class="nav-logo">Ebba<span>'s</span> Tracker</div>
+  <div class="nav-date">23 June 2026 — Day 1</div>
+</div>
+<div class="container">
+  <div class="header"><h1>Hi Ebba 👋</h1><p>62.0 → 60 kg goal &nbsp;·&nbsp; ~300 kcal deficit/day | FODMAP strict</p></div>
+
+  <div class="fodmap-banner">🌿 Strict Low-FODMAP · SIBO protocol · LDL-conscious (low sat. fat)</div>
+
+  <p class="section-title">Current Weight</p>
+  <div class="weight-card">
+    <div class="weight-info">
+      <h3>Body Weight</h3>
+      <div class="current">62.0 kg</div>
+      <div class="goal">Goal: <span>60 kg</span></div>
+    </div>
+    <div class="weight-progress">
+      <div class="stat" style="color:var(--muted);">Day 1 🏁</div>
+      <div class="to-go">2.0 kg to go</div>
+    </div>
+  </div>
+
+  <p class="section-title">Today's Macros</p>
+  <div class="macro-grid">
+    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">0</div><div class="m-target">of 1,625 kcal</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">0g</div><div class="m-target">of 95g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">0g</div><div class="m-target">of 199g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">0g</div><div class="m-target">of 50g</div><div class="m-bar"><div class="m-fill" style="width:0%"></div></div></div>
+  </div>
+
+  <p class="section-title">Remaining Today</p>
+  <div class="remaining">
+    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">1,625 kcal</span></div>
+    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">95g</span></div>
+    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">199g</span></div>
+    <div class="rem-row"><span class="rl">Fat left</span><span class="rv good">50g</span></div>
+  </div>
+
+  <p class="section-title">Food Log — 23 June</p>
+  <div class="log">
+    <div class="log-header"><h3>Today's Meals</h3><span class="badge badge-purple">Day 1</span></div>
+    <div class="empty-state">Nothing logged yet today 🌿</div>
+    <div class="total-row"><span class="tl">TODAY SO FAR</span><span class="tr">0 kcal · P:0g · C:0g · F:0g</span></div>
+  </div>
+
+  <p class="section-title">Weight Log</p>
+  <div class="weight-log">
+    <div class="log-header"><h3>Weigh-ins</h3></div>
+    <div class="w-entry"><span class="w-date">23 June 2026</span><span class="w-kg">62.0 kg</span><span class="w-change" style="color:var(--muted)">Start 🏁</span></div>
+  </div>
+</div>
+</body>
+</html>
