@@ -33,8 +33,7 @@
   .remaining{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:20px;}
   .rem-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
   .rem-row:last-child{border-bottom:none;}
-  .rem-row .rl{font-size:14px;color:var(--muted);}
-  .rem-row .rv{font-size:14px;font-weight:600;}
+  .rem-row .rl{font-size:14px;color:var(--muted);}.rem-row .rv{font-size:14px;font-weight:600;}
   .rv.good{color:var(--green);}.rv.over{color:var(--red);}
   .log{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:20px;}
   .log-header{padding:16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
@@ -45,138 +44,67 @@
   .li-kcal{font-size:14px;font-weight:600;color:var(--red);text-align:right;}
   .li-macros{font-size:11px;color:var(--muted);margin-top:2px;text-align:right;}
   .total-row{padding:14px 16px;background:var(--card2);display:flex;justify-content:space-between;}
-  .total-row .tl{font-size:13px;font-weight:700;color:var(--muted);}
-  .total-row .tr{font-size:13px;font-weight:700;color:var(--red);}
-  .weight-log{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;}
-  .w-entry{padding:12px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
-  .w-entry:last-child{border-bottom:none;}
-  .w-date{font-size:13px;color:var(--muted);}.w-kg{font-size:15px;font-weight:700;}
-  .w-change{font-size:12px;}
-  .badge{display:inline-block;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:600;}
-  .badge-green{background:rgba(93,186,110,.15);color:var(--green);}
-  .badge-red{background:rgba(232,64,64,.15);color:var(--red);}
-  .badge-orange{background:rgba(240,192,48,.15);color:var(--yellow);}
+  .total-row .tl{font-size:13px;font-weight:700;color:var(--muted);}.total-row .tr{font-size:13px;font-weight:700;color:var(--red);}
   .section-title{font-size:13px;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:12px;font-weight:600;}
-  .note{background:rgba(240,192,48,.08);border:1px solid rgba(240,192,48,.2);border-radius:12px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--yellow);}
 </style>
 </head>
 <body>
 <div class="nav">
   <div class="nav-logo">Hugo<span>'s</span> Tracker</div>
-  <div class="nav-date">15 June 2026 — Day 8</div>
+  <div class="nav-date">28 June 2026</div>
 </div>
 <div class="container">
-  <div class="header"><h1>Hi Hugo 👋</h1><p>96.0 → 88kg goal &nbsp;·&nbsp; ~500 kcal deficit/day | preserve muscle</p></div>
-
-  <p class="section-title">Current Weight</p>
-  <div class="weight-card">
-    <div class="weight-info">
-      <h3>Body Weight</h3>
-      <div class="current">94.6 kg</div>
-      <div class="goal">Goal: <span>88 kg</span></div>
-    </div>
-    <div class="weight-progress">
-      <div class="stat" style="color:var(--green);">-1.4 kg 📉</div>
-      <div class="to-go">6.6 kg to go</div>
-    </div>
-  </div>
+  <div class="header"><h1>Hey Hugo 👋</h1><p>Logging your macros for today</p></div>
 
   <p class="section-title">Today's Macros</p>
   <div class="macro-grid">
-    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">1,573</div><div class="m-target">of 2,645 kcal</div><div class="m-bar"><div class="m-fill" style="width:59%"></div></div></div>
-    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">88g</div><div class="m-target">of 214g</div><div class="m-bar"><div class="m-fill" style="width:41%"></div></div></div>
-    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">111g</div><div class="m-target">of 272g</div><div class="m-bar"><div class="m-fill" style="width:41%"></div></div></div>
-    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">82g</div><div class="m-target">of 78g</div><div class="m-bar"><div class="m-fill" style="width:100%"></div></div></div>
+    <div class="macro-card c-kcal"><div class="m-label">Calories</div><div class="m-val">1815</div><div class="m-target">of 2100 kcal</div><div class="m-bar"><div class="m-fill" style="width:86%"></div></div></div>
+    <div class="macro-card c-protein"><div class="m-label">Protein</div><div class="m-val">162g</div><div class="m-target">of 160g</div><div class="m-bar"><div class="m-fill" style="width:100%"></div></div></div>
+    <div class="macro-card c-carbs"><div class="m-label">Carbs</div><div class="m-val">100g</div><div class="m-target">of 220g</div><div class="m-bar"><div class="m-fill" style="width:45%"></div></div></div>
+    <div class="macro-card c-fat"><div class="m-label">Fat</div><div class="m-val">93g</div><div class="m-target">of 70g</div><div class="m-bar"><div class="m-fill" style="width:100%"></div></div></div>
   </div>
 
   <p class="section-title">Remaining Today</p>
   <div class="remaining">
-    <div class="rem-row"><span class="rl">Calories left</span><span class="rv good">1,072 kcal</span></div>
-    <div class="rem-row"><span class="rl">Protein left</span><span class="rv good">126g</span></div>
-    <div class="rem-row"><span class="rl">Carbs left</span><span class="rv good">161g</span></div>
-    <div class="rem-row"><span class="rl">Fat left</span><span class="rv over">-4g (over!)</span></div>
+    <div class="rem-row"><span class="rl">Calories</span><span class="rv good">285 kcal left</span></div>
+    <div class="rem-row"><span class="rl">Protein</span><span class="rv over">2g over</span></div>
+    <div class="rem-row"><span class="rl">Carbs</span><span class="rv good">120g left</span></div>
+    <div class="rem-row"><span class="rl">Fat</span><span class="rv over">23g over</span></div>
   </div>
 
-  <p class="section-title">Food Log — 17 June</p>
+  <p class="section-title">Food Log</p>
   <div class="log">
-    <div class="log-header"><h3>Today's Meals</h3><span class="badge badge-orange">Day 10</span></div>
+    <div class="log-header"><h3>28 June 2026</h3><span style="font-size:13px;color:var(--muted);">7 items</span></div>
+    
     <div class="log-item">
-      <div><div class="li-name">Pasta</div><div class="li-amount">150g dry</div></div>
-      <div style="text-align:right"><div class="li-kcal">557 kcal</div><div class="li-macros">P:20g · C:111g · F:2g</div></div>
+      <div><div class="li-name">8x Bolletje Proteïne Crackers</div><div class="li-amount">80g</div></div>
+      <div><div class="li-kcal">280 kcal</div><div class="li-macros">P 18g · C 40g · F 4g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">Beef Mince</div><div class="li-amount">400g (20% fat)</div></div>
-      <div style="text-align:right"><div class="li-kcal">1,016 kcal</div><div class="li-macros">P:68g · C:0g · F:80g</div></div>
-    </div>
-    <div class="total-row"><span class="tl">TODAY SO FAR</span><span class="tr">1,573 kcal · P:88g · C:111g · F:82g</span></div>
-  </div>
-
-  <p class="section-title">Previous Days</p>
-  <div class="log">
-    <div class="log-header"><h3>16 June — Day 9</h3><span class="badge badge-green">Logged</span></div>
-    <div class="log-item">
-      <div><div class="li-name">Eggs</div><div class="li-amount">5 whole eggs</div></div>
-      <div><div class="li-kcal">350 kcal</div><div class="li-macros">P:30g · C:3g · F:25g</div></div>
+      <div><div class="li-name">Tuna (2 cans)</div><div class="li-amount">300g drained</div></div>
+      <div><div class="li-kcal">300 kcal</div><div class="li-macros">P 78g · C 0g · F 3g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">Beef Mince</div><div class="li-amount">311g (20% fat)</div></div>
-      <div><div class="li-kcal">790 kcal</div><div class="li-macros">P:53g · C:0g · F:62g</div></div>
+      <div><div class="li-name">Protein Yogurt</div><div class="li-amount">300g</div></div>
+      <div><div class="li-kcal">150 kcal</div><div class="li-macros">P 30g · C 15g · F 1g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">White Rice</div><div class="li-amount">150g dry</div></div>
-      <div><div class="li-kcal">548 kcal</div><div class="li-macros">P:11g · C:120g · F:1g</div></div>
-    </div>
-    <div class="total-row"><span class="tl">DAY 9 TOTAL</span><span class="tr">1,688 kcal · P:94g · C:123g · F:88g</span></div>
-  </div>
-
-  <p class="section-title">Previous Days</p>
-  <div class="log">
-    <div class="log-header"><h3>14 June — Day 7</h3><span class="badge badge-green">Logged</span></div>
-    <div class="log-item">
-      <div><div class="li-name">Chicken Breast</div><div class="li-amount">200g</div></div>
-      <div><div class="li-kcal">330 kcal</div><div class="li-macros">P: 62g · C: 0g · F: 7g</div></div>
+      <div><div class="li-name">Mayo</div><div class="li-amount">4 tbsp</div></div>
+      <div><div class="li-kcal">400 kcal</div><div class="li-macros">P 0g · C 1g · F 44g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">White Rice</div><div class="li-amount">80g dry</div></div>
-      <div><div class="li-kcal">292 kcal</div><div class="li-macros">P: 6g · C: 64g · F: 1g</div></div>
+      <div><div class="li-name">Ham</div><div class="li-amount">2 slices</div></div>
+      <div><div class="li-kcal">60 kcal</div><div class="li-macros">P 12g · C 1g · F 2g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">Clear Protein Shake + Creatine</div><div class="li-amount">2 scoops (40g) + 10g creatine</div></div>
-      <div><div class="li-kcal">144 kcal</div><div class="li-macros">P: 32g · C: 6g · F: 0g</div></div>
-    </div>
-    <div class="total-row"><span class="tl">DAY 7 TOTAL</span><span class="tr">766 kcal · P:100g · C:70g · F:8g</span></div>
-  </div>
-
-  <div class="log">
-    <div class="log-header"><h3>13 June — Day 6</h3><span class="badge badge-green">Logged</span></div>
-    <div class="log-item">
-      <div><div class="li-name">Clear Protein Shake + Creatine</div><div class="li-amount">40g shake + 10g creatine</div></div>
-      <div><div class="li-kcal">144 kcal</div><div class="li-macros">P: 32g · C: 6g · F: 0g</div></div>
+      <div><div class="li-name">Pasta</div><div class="li-amount">50g dry</div></div>
+      <div><div class="li-kcal">175 kcal</div><div class="li-macros">P 6g · C 35g · F 1g</div></div>
     </div>
     <div class="log-item">
-      <div><div class="li-name">Chicken Breast + White Rice</div><div class="li-amount">250g chicken + 100g rice (dry)</div></div>
-      <div><div class="li-kcal">625 kcal</div><div class="li-macros">P: 65g · C: 78g · F: 7g</div></div>
+      <div><div class="li-name">Burrata + Mozzarella + Pesto</div><div class="li-amount">1 serving</div></div>
+      <div><div class="li-kcal">450 kcal</div><div class="li-macros">P 18g · C 8g · F 38g</div></div>
     </div>
-    <div class="log-item">
-      <div><div class="li-name">Chipotle Mince Bowl + Sushi</div><div class="li-amount">300g mince + 150g sushi rice + nori + ham + avocado + samurai</div></div>
-      <div><div class="li-kcal">1,310 kcal</div><div class="li-macros">P: 74g · C: 135g · F: 50g</div></div>
-    </div>
-    <div class="total-row"><span class="tl">DAY 6 TOTAL</span><span class="tr">2,079 kcal · P:171g · C:219g · F:57g</span></div>
-  </div>
-
-  <p class="section-title">Weight Log</p>
-  <div class="weight-log">
-    <div class="log-header"><h3>Weigh-ins</h3></div>
-    <div class="w-entry"><span class="w-date">3 June 2026</span><span class="w-kg">96.0 kg</span><span class="w-change" style="color:var(--muted)">Start 🏁</span></div>
-    <div class="w-entry"><span class="w-date">4 June 2026</span><span class="w-kg">97.4 kg</span><span class="w-change" style="color:#e84040;">+1.4 kg</span></div>
-    <div class="w-entry"><span class="w-date">5 June 2026</span><span class="w-kg">97.0 kg</span><span class="w-change" style="color:#5dba6e;">-0.4 kg</span></div>
-    <div class="w-entry"><span class="w-date">6 June 2026</span><span class="w-kg">96.8 kg</span><span class="w-change" style="color:#5dba6e;">-0.2 kg</span></div>
-    <div class="w-entry"><span class="w-date">10 June 2026</span><span class="w-kg">96.0 kg</span><span class="w-change" style="color:#5dba6e;">-0.8 kg</span></div>
-    <div class="w-entry"><span class="w-date">12 June 2026</span><span class="w-kg">95.0 kg</span><span class="w-change" style="color:#5dba6e;">-1.0 kg</span></div>
-    <div class="w-entry"><span class="w-date">13 June 2026</span><span class="w-kg">95.3 kg</span><span class="w-change" style="color:#5dba6e;">-0.3 kg</span></div>
-    <div class="w-entry"><span class="w-date">14 June 2026</span><span class="w-kg">95.0 kg</span><span class="w-change" style="color:#5dba6e;">-0.3 kg</span></div>
-    <div class="w-entry"><span class="w-date">15 June 2026</span><span class="w-kg">94.9 kg</span><span class="w-change" style="color:#5dba6e;">-0.1 kg</span></div>
-    <div class="w-entry"><span class="w-date">16 June 2026</span><span class="w-kg">94.6 kg</span><span class="w-change" style="color:#5dba6e;">new low 📉</span></div>
+    <div class="total-row"><span class="tl">TOTAL</span><span class="tr">1815 kcal</span></div>
   </div>
 </div>
 </body>
